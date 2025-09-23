@@ -2,7 +2,7 @@ import { useSignIn } from "@clerk/clerk-expo";
 import { Link, useRouter } from "expo-router";
 import { Text, TextInput, TouchableOpacity, View, Image } from "react-native";
 import React from "react";
-import NTUEatsLogo from "../../assets/images/NTUeats-logo.png";
+import NTUEatsLogo from "@/assets/images/NTUeats-logo.png";
 
 export default function SignInScreen() {
   const { signIn, setActive, isLoaded } = useSignIn();
