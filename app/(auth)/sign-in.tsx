@@ -39,7 +39,7 @@ export default function SignInScreen() {
   }
 
   return (
-    <View>
+    <View className='flex-1 items-center justify-center gap-4 px-8'>
       <Text>Sign in</Text>
       <TextInput
         autoCapitalize="none"
