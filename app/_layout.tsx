@@ -2,7 +2,7 @@ import { ClerkProvider } from "@clerk/clerk-expo";
 import SafeScreen from "./components/SafeScreen";
 import { tokenCache } from "@clerk/clerk-expo/token-cache";
 import { Slot } from "expo-router";
-import "./global.css";
+import "./global.css"
 
 import { useFonts } from "expo-font";
 import { ActivityIndicator, View } from "react-native";
@@ -15,6 +15,7 @@ export default function RootLayout() {
     "Ranchers-Regular": require("../assets/fonts/Ranchers/Ranchers-Regular.ttf"),
   });
 
+  // Show a loading indicator while fonts are loading
   if (!fontsLoaded) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -23,6 +24,7 @@ export default function RootLayout() {
     );
   }
 
+  // ClerkProvider is required for login/authentication
   return (
     <ClerkProvider tokenCache={tokenCache}>
       <SafeScreen>
