@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
 import { Link, useRouter } from "expo-router";
 import InputField from "../components/InputField";
@@ -22,7 +22,11 @@ export default function SignUpScreen() {
   // Handle submission of sign-up form
   const onSignUpPress = async () => {
     if (!isLoaded) return;
-    if (formData.password !== formData.confirmPassword) return; // ensure the passwords match
+    // Ensure the passwords match
+    if (formData.password !== formData.confirmPassword) {
+      Alert.alert("Passwords do not match");
+      return;
+    }
 
     // Start sign-up process using email and password provided
     try {
@@ -41,6 +45,7 @@ export default function SignUpScreen() {
       // See https://clerk.com/docs/custom-flows/error-handling
       // for more info on error handling
       console.error(JSON.stringify(err, null, 2));
+      Alert.alert((err as any).errors[0].message);
     }
   };
 
@@ -71,6 +76,22 @@ export default function SignUpScreen() {
     }
   };
 
+  const cancelVerification = () => {
+    Alert.alert("Canceling verification", "Are you sure?", [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Yes",
+        onPress: () => {
+          setPendingVerification(false);
+          router.push("/sign-up");
+        },
+      },
+    ]);
+  };
+
   if (pendingVerification) {
     return (
       <View className="flex flex-col gap-4 items-center justify-center px-8 h-full bg-cream text-blue">
@@ -87,13 +108,13 @@ export default function SignUpScreen() {
           onChangeText={(code) => setCode(code)}
         />
         <View className="w-72 flex flex-row justify-between items-center mt-4">
-          <TouchableOpacity onPress={() => router.push("/sign-up")}>
+          <TouchableOpacity onPress={() => cancelVerification()}>
             <Text className="text-blue text-lg font-semibold text-center py-2 bg-red rounded-full w-28">
               Back
             </Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={onVerifyPress}>
-            <Text className="text-blue text-lg font-semibold border-2 border-green text-center p-2 rounded-full w-40">
+            <Text className="text-blue text-lg font-semibold border-2 border-blue text-center p-2 rounded-full w-40">
               Verify
             </Text>
           </TouchableOpacity>
@@ -132,12 +153,14 @@ export default function SignUpScreen() {
           label="Password"
           value={formData.password}
           placeholder="password"
+          secureTextEntry={true}
           onChangeText={(text) => setFormData({ ...formData, password: text })}
         />
         <InputField
           label="Confirm Password"
           value={formData.confirmPassword}
           placeholder="confirmed password"
+          secureTextEntry={true}
           onChangeText={(text) =>
             setFormData({ ...formData, confirmPassword: text })
           }

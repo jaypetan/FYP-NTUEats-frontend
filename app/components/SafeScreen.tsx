@@ -6,7 +6,12 @@ const SafeScreen = ({ children }: { children: React.ReactNode }) => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom }}
+      style={{
+        flex: 1,
+        paddingTop: insets.top,
+        paddingBottom: insets.bottom,
+        backgroundColor: "black",
+      }}
     >
       {children}
     </KeyboardAvoidingView>

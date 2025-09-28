@@ -1,8 +1,17 @@
 import { useSignIn } from "@clerk/clerk-expo";
 import { Link, useRouter } from "expo-router";
-import { Text, TextInput, TouchableOpacity, View, Image } from "react-native";
+import {
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  Image,
+  Alert,
+} from "react-native";
 import React from "react";
 import NTUEatsLogo from "@/assets/images/NTUeats-logo.png";
+
+import InputField from "../components/InputField";
 
 export default function SignInScreen() {
   const { signIn, setActive, isLoaded } = useSignIn();
@@ -25,6 +34,7 @@ export default function SignInScreen() {
       // If sign-in process is complete, set the created session as active
       // and redirect the user
       if (signInAttempt.status === "complete") {
+        Alert.alert("Sign in successful!");
         await setActive({ session: signInAttempt.createdSessionId });
         router.replace("/");
       } else {
@@ -36,27 +46,24 @@ export default function SignInScreen() {
       // See https://clerk.com/docs/custom-flows/error-handling
       // for more info on error handling
       console.error(JSON.stringify(err, null, 2));
+      Alert.alert((err as any).errors[0].message);
     }
   };
 
   return (
     <View className="flex flex-col items-center justify-center gap-4 px-8 h-full bg-cream text-blue">
-      <Image source={NTUEatsLogo} className="h-96" resizeMode="contain"/>
-      <View className="w-72">
-        <Text className="text-left text-xl font-bold text-blue">Email</Text>
-        <TextInput
-          className="bg-green rounded-full px-4 py-2 text-md"
-          autoCapitalize="none"
+      <Image source={NTUEatsLogo} className="h-96" resizeMode="contain" />
+      <View className="w-72 flex flex-col gap-4">
+        <InputField
+          label="Email Address"
           value={emailAddress}
           placeholder="example@email.com"
-          onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
-        />
-      </View>
-      <View className="w-72">
-        <Text className="text-left text-xl font-bold text-blue">Password</Text>
-        <TextInput
-          className="bg-green rounded-full px-4 py-2 text-md"
+          onChangeText={(email) => setEmailAddress(email)}
+          keyboardType="email-address"
           autoCapitalize="none"
+        />
+        <InputField
+          label="Password"
           value={password}
           placeholder="password"
           secureTextEntry={true}
@@ -64,7 +71,7 @@ export default function SignInScreen() {
         />
       </View>
       <View className="w-72 flex flex-row justify-between items-center mt-4">
-        <TouchableOpacity onPress={() => router.push('/sign-up')}>
+        <TouchableOpacity onPress={() => router.push("/sign-up")}>
           <Text className="text-blue text-lg font-semibold text-center py-2 bg-red rounded-full w-28">
             Sign Up
           </Text>
