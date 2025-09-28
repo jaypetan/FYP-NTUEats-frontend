@@ -2,25 +2,33 @@ import * as React from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
 import { Link, useRouter } from "expo-router";
+import InputField from "../components/InputField";
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
   const router = useRouter();
 
-  const [emailAddress, setEmailAddress] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [formData, setFormData] = React.useState({
+    username: "",
+    emailAddress: "",
+    password: "",
+    confirmPassword: "",
+  });
+  // TODO: use when connect to backend
+
   const [pendingVerification, setPendingVerification] = React.useState(false);
   const [code, setCode] = React.useState("");
 
   // Handle submission of sign-up form
   const onSignUpPress = async () => {
     if (!isLoaded) return;
+    if (formData.password !== formData.confirmPassword) return; // ensure the passwords match
 
     // Start sign-up process using email and password provided
     try {
       await signUp.create({
-        emailAddress,
-        password,
+        emailAddress: formData.emailAddress,
+        password: formData.password,
       });
 
       // Send user an email with verification code
@@ -65,63 +73,83 @@ export default function SignUpScreen() {
 
   if (pendingVerification) {
     return (
-      <>
-        <Text>Verify your email</Text>
+      <View className="flex flex-col gap-4 items-center justify-center px-8 h-full bg-cream text-blue">
+        <Text className="text-blue text-3xl font-semibold text-center">
+          Enter verification code
+        </Text>
+        <Text className="text-blue text-base font-semibold text-center">
+          An email has been sent to {formData.emailAddress}
+        </Text>
         <TextInput
+          className="text-blue text-lg font-semibold border-2 border-blue leading-5 p-3 rounded-full w-72 text-center"
           value={code}
-          placeholder="Enter your verification code"
+          placeholder="XXX XXX"
           onChangeText={(code) => setCode(code)}
         />
-        <TouchableOpacity onPress={onVerifyPress}>
-          <Text>Verify</Text>
-        </TouchableOpacity>
-      </>
+        <View className="w-72 flex flex-row justify-between items-center mt-4">
+          <TouchableOpacity onPress={() => router.push("/sign-up")}>
+            <Text className="text-blue text-lg font-semibold text-center py-2 bg-red rounded-full w-28">
+              Back
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={onVerifyPress}>
+            <Text className="text-blue text-lg font-semibold border-2 border-green text-center p-2 rounded-full w-40">
+              Verify
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     );
   }
 
   return (
-    <View className="flex flex-col items-center justify-center gap-4 px-8 h-full bg-cream text-blue">
-      <Text className="text-blue text-2xl text-left w-80 font-semibold">
+    <View className="flex flex-col items-center justify-center px-8 h-full bg-cream text-blue">
+      <Text className="text-blue text-3xl text-left w-80 font-semibold">
         Create an account
       </Text>
-      <View className="flex flex-row gap-2 items-center text-left w-80">
+      <View className="flex flex-row gap-2 text-left w-80">
         <Text>Already have an account?</Text>
         <Link href="/sign-in">
-          <Text className="text-blue font-bold underline">
-            Sign in
-          </Text>
+          <Text className="text-blue font-bold underline">Sign in</Text>
         </Link>
       </View>
-      <View className="w-72">
-        <Text className="mb-1 text-blue text-xl text-left font-bold">
-          Email
-        </Text>
-        <TextInput
-          className="text-blue text-lg font-semibold border-2 border-blue text-center py-2 rounded-full w-72"
-          placeholderTextColor="gray"
-          autoCapitalize="none"
-          value={emailAddress}
+      <View className="flex flex-col gap-4 text-left w-80 mt-4">
+        <InputField
+          label="Username"
+          value={formData.username}
+          placeholder="John Doe"
+          onChangeText={(text) => setFormData({ ...formData, username: text })}
+        />
+        <InputField
+          label="Email"
+          value={formData.emailAddress}
           placeholder="example@email.com"
-          onChangeText={(email) => setEmailAddress(email)}
+          onChangeText={(text) =>
+            setFormData({ ...formData, emailAddress: text })
+          }
         />
-      </View>
-      <View className="w-72">
-        <Text className="w-72 text-left text-xl font-bold text-blue mb-1">
-          Password
-        </Text>
-        <TextInput
-          className="text-blue text-lg font-semibold border-2 border-blue text-center py-2 rounded-full w-72"
-          value={password}
+        <InputField
+          label="Password"
+          value={formData.password}
           placeholder="password"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
+          onChangeText={(text) => setFormData({ ...formData, password: text })}
+        />
+        <InputField
+          label="Confirm Password"
+          value={formData.confirmPassword}
+          placeholder="confirmed password"
+          onChangeText={(text) =>
+            setFormData({ ...formData, confirmPassword: text })
+          }
         />
       </View>
-      <TouchableOpacity onPress={onSignUpPress}>
-        <Text className="text-blue text-lg font-semibold border-2 border-blue text-center py-2 rounded-full w-40">
-          Sign Up
-        </Text>
-      </TouchableOpacity>
+      <View className="w-80 flex flex-row justify-end items-center mt-8">
+        <TouchableOpacity onPress={onSignUpPress}>
+          <Text className="text-blue text-lg font-semibold border-2 border-blue text-center p-2 rounded-full w-40">
+            Sign Up
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
