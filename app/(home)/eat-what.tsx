@@ -17,7 +17,7 @@ export default function EatWhat({
   widthClass,
 }: EatWhatProps) {
   return (
-    <View className="h-full w-full flex flex-col">
+    <View className="h-full w-full flex-col">
       <HomeNav
         backgroundColor={backgroundColor}
         backgroundColorHex={backgroundColorHex}

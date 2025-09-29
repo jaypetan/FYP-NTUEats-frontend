@@ -1,5 +1,8 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
 import HomeNav from "../components/HomeNav";
+import HomeProfile from "../components/HomeProfile";
+import HomeEatWHAT from "../components/HomeEatWHAT";
+import HomeCookWHAT from "../components/HomeCookWHAT";
 
 interface HomeScreenProps {
   currentPage: string;
@@ -17,7 +20,7 @@ export default function HomeScreen({
   widthClass,
 }: HomeScreenProps) {
   return (
-    <View className="h-full w-full flex flex-col">
+    <View className="h-full w-full flex-col">
       <HomeNav
         backgroundColor={backgroundColor}
         backgroundColorHex={backgroundColorHex}
@@ -32,9 +35,12 @@ export default function HomeScreen({
         />
       ) : (
         <ScrollView
-          className={`bg-${backgroundColor} min-h-[80vh] rounded-b-3xl`}
+          className={`bg-${backgroundColor} min-h-[80vh] rounded-b-3xl p-8`}
         >
-          <Text className="text-6xl">Home Screen 1</Text>
+          <HomeProfile />
+          <HomeEatWHAT />
+          <HomeCookWHAT />
+          <Text className="p-16" />
         </ScrollView>
       )}
     </View>

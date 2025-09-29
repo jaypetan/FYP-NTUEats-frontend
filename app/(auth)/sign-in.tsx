@@ -2,7 +2,7 @@ import { useSignIn } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 import { Text, TouchableOpacity, View, Image, Alert } from "react-native";
 import React from "react";
-import NTUEatsLogo from "@/assets/images/NTUeats-logo.png";
+import NTUEatsLogo from "@/assets/images/logos/NTUeats-logo.png";
 import InputField from "../components/InputField";
 
 export default function SignInScreen() {
@@ -43,9 +43,9 @@ export default function SignInScreen() {
   };
 
   return (
-    <View className="flex flex-col items-center justify-center gap-4 px-8 h-full bg-cream text-blue">
+    <View className="flex-col items-center justify-center gap-4 px-8 h-full bg-cream text-blue">
       <Image source={NTUEatsLogo} className="h-96" resizeMode="contain" />
-      <View className="w-72 flex flex-col gap-4">
+      <View className="w-72 flex-col gap-4">
         <InputField
           label="Email Address"
           value={emailAddress}
@@ -62,7 +62,7 @@ export default function SignInScreen() {
           onChangeText={(password) => setPassword(password)}
         />
       </View>
-      <View className="w-72 flex flex-row justify-between items-center mt-4">
+      <View className="w-72 flex-row justify-between items-center mt-4">
         <TouchableOpacity onPress={() => router.push("/sign-up")}>
           <Text className="text-blue text-lg font-semibold text-center py-2 bg-red rounded-full w-28">
             Sign Up

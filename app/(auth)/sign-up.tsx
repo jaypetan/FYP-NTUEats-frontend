@@ -94,7 +94,7 @@ export default function SignUpScreen() {
 
   if (pendingVerification) {
     return (
-      <View className="flex flex-col gap-4 items-center justify-center px-8 h-full bg-cream text-blue">
+      <View className="flex-col gap-4 items-center justify-center px-8 h-full bg-cream text-blue">
         <Text className="text-blue text-3xl font-semibold text-center">
           Enter verification code
         </Text>
@@ -107,7 +107,7 @@ export default function SignUpScreen() {
           placeholder="XXX XXX"
           onChangeText={(code) => setCode(code)}
         />
-        <View className="w-72 flex flex-row justify-between items-center mt-4">
+        <View className="w-72 flex-row justify-between items-center mt-4">
           <TouchableOpacity onPress={() => cancelVerification()}>
             <Text className="text-blue text-lg font-semibold text-center py-2 bg-red rounded-full w-28">
               Back
@@ -124,17 +124,17 @@ export default function SignUpScreen() {
   }
 
   return (
-    <View className="flex flex-col items-center justify-center px-8 h-full bg-cream text-blue">
+    <View className="flex-col items-center justify-center px-8 h-full bg-cream text-blue">
       <Text className="text-blue text-3xl text-left w-80 font-semibold">
         Create an account
       </Text>
-      <View className="flex flex-row gap-2 text-left w-80">
+      <View className="flex-row gap-2 text-left w-80">
         <Text>Already have an account?</Text>
         <Link href="/sign-in">
           <Text className="text-blue font-bold underline">Sign in</Text>
         </Link>
       </View>
-      <View className="flex flex-col gap-4 text-left w-80 mt-4">
+      <View className="flex-col gap-4 text-left w-80 mt-4">
         <InputField
           label="Username"
           value={formData.username}
@@ -166,7 +166,7 @@ export default function SignUpScreen() {
           }
         />
       </View>
-      <View className="w-80 flex flex-row justify-end items-center mt-8">
+      <View className="w-80 flex-row justify-end items-center mt-8">
         <TouchableOpacity onPress={onSignUpPress}>
           <Text className="text-blue text-lg font-semibold border-2 border-blue text-center p-2 rounded-full w-40">
             Sign Up
