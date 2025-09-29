@@ -6,6 +6,7 @@ interface CookWhatProps {
   setCurrentPage: React.Dispatch<React.SetStateAction<string>>;
   backgroundColor: string;
   backgroundColorHex: string;
+  widthClass: string;
 }
 
 export default function CookWhat({
@@ -13,6 +14,7 @@ export default function CookWhat({
   setCurrentPage,
   backgroundColor,
   backgroundColorHex,
+  widthClass,
 }: CookWhatProps) {
   return (
     <View className="h-full w-full flex flex-col">
@@ -22,6 +24,7 @@ export default function CookWhat({
         text="CookWHAT"
         setCurrentPage={setCurrentPage}
         desiredPage="cook-what"
+        widthClass={widthClass}
       />
       {currentPage !== "cook-what" ? (
         <View

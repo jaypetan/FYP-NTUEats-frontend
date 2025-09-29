@@ -64,6 +64,13 @@ export default function Page() {
                 setCurrentPage={setCurrentPage}
                 backgroundColor={index % 2 === 0 ? "darkcream" : "cream"}
                 backgroundColorHex={index % 2 === 0 ? "#FFE6A7" : "#FFEFC7"}
+                widthClass={
+                  index === 0
+                    ? "w-[14rem]"
+                    : index === 1
+                    ? "w-[12rem]"
+                    : "w-[10rem]"
+                }
               />
             </Animated.View>
           ))}

@@ -8,6 +8,7 @@ interface HomeNavProps {
   text: string;
   setCurrentPage: React.Dispatch<React.SetStateAction<string>>;
   desiredPage: string;
+  widthClass: string;
 }
 
 const HomeNav: React.FC<HomeNavProps> = ({
@@ -16,6 +17,7 @@ const HomeNav: React.FC<HomeNavProps> = ({
   text,
   setCurrentPage,
   desiredPage,
+  widthClass,
 }) => {
   return (
     <View className="w-full flex flex-col">
@@ -23,7 +25,7 @@ const HomeNav: React.FC<HomeNavProps> = ({
         <Subtract color={backgroundColorHex} />
         <TouchableWithoutFeedback onPress={() => setCurrentPage(desiredPage)}>
           <View
-            className={`w-1/3 rounded-tl-3xl p-4 pr-8 bg-${backgroundColor}`}
+            className={`${widthClass} rounded-tl-3xl p-4 pr-8 bg-${backgroundColor}`}
           >
             <Text className="text-right font-koulen text-2xl text-blue">
               {text}

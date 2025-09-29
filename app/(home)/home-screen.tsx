@@ -6,6 +6,7 @@ interface HomeScreenProps {
   setCurrentPage: React.Dispatch<React.SetStateAction<string>>;
   backgroundColor: string;
   backgroundColorHex: string;
+  widthClass: string;
 }
 
 export default function HomeScreen({
@@ -13,6 +14,7 @@ export default function HomeScreen({
   setCurrentPage,
   backgroundColor,
   backgroundColorHex,
+  widthClass,
 }: HomeScreenProps) {
   return (
     <View className="h-full w-full flex flex-col">
@@ -22,6 +24,7 @@ export default function HomeScreen({
         text="Home"
         setCurrentPage={setCurrentPage}
         desiredPage="home-screen"
+        widthClass={widthClass}
       />
       {currentPage !== "home-screen" ? (
         <View

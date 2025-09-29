@@ -6,6 +6,7 @@ interface EatWhatProps {
   setCurrentPage: React.Dispatch<React.SetStateAction<string>>;
   backgroundColor: string;
   backgroundColorHex: string;
+  widthClass: string;
 }
 
 export default function EatWhat({
@@ -13,6 +14,7 @@ export default function EatWhat({
   setCurrentPage,
   backgroundColor,
   backgroundColorHex,
+  widthClass,
 }: EatWhatProps) {
   return (
     <View className="h-full w-full flex flex-col">
@@ -22,6 +24,7 @@ export default function EatWhat({
         text="EatWHAT"
         setCurrentPage={setCurrentPage}
         desiredPage="eat-what"
+        widthClass={widthClass}
       />
       {currentPage !== "eat-what" ? (
         <View
