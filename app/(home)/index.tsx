@@ -6,6 +6,8 @@ import { useState, useEffect } from "react";
 import HomeScreen from "./home-screen";
 import EatWhat from "./eat-what";
 import CookWhat from "./cook-what";
+import Animated from "react-native-reanimated";
+import { SequencedTransition, ReduceMotion } from "react-native-reanimated";
 
 export default function Page() {
   const { user } = useUser();
@@ -36,6 +38,11 @@ export default function Page() {
     });
   }, [currentPage]);
 
+  SequencedTransition.duration(10000)
+    .delay(500)
+    .reverse()
+    .reduceMotion(ReduceMotion.Never);
+
   return (
     <View>
       {/* if signed in */}
@@ -44,14 +51,21 @@ export default function Page() {
           <Text>Hello {user?.emailAddresses[0].emailAddress}</Text>
           <SignOutButton />
           {componentOrder.map(({ id, component: Component }, index) => (
-            <View key={id} className="h-14">
+            <Animated.View
+              key={id}
+              className="h-14"
+              layout={SequencedTransition.duration(1000)
+                .delay(200)
+                .reverse()
+                .reduceMotion(ReduceMotion.Never)}
+            >
               <Component
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
                 backgroundColor={index % 2 === 0 ? "darkcream" : "cream"}
                 backgroundColorHex={index % 2 === 0 ? "#FFE6A7" : "#FFEFC7"}
               />
-            </View>
+            </Animated.View>
           ))}
         </View>
       </SignedIn>

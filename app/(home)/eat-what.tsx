@@ -25,7 +25,7 @@ export default function EatWhat({
       />
       {currentPage !== "eat-what" ? (
         <View
-          className={`bg-${backgroundColor} h-[4.5rem] rounded-tl-3xl w-full`}
+          className={`bg-${backgroundColor} min-h-[80vh] rounded-tl-3xl w-full`}
         />
       ) : (
         <ScrollView

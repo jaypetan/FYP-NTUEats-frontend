@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./app/**/*.{js,jsx,ts,tsx}"],
+  safelist: ["bg-darkcream"],
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
