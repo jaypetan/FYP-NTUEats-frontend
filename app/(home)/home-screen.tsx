@@ -1,8 +1,8 @@
 import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
-import HomeNav from "../components/HomeNav";
-import HomeProfile from "../components/HomeProfile";
-import HomeEatWHAT from "../components/HomeEatWHAT";
-import HomeCookWHAT from "../components/HomeCookWHAT";
+import HomeNav from "../components/Home/HomeNav";
+import HomeProfile from "../components/Home/HomeProfile";
+import HomeEatWHAT from "../components/Home/HomeEatWHAT";
+import HomeCookWHAT from "../components/Home/HomeCookWHAT";
 
 interface HomeScreenProps {
   currentPage: string;

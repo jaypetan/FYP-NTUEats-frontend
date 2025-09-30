@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import HomeNav from "../components/HomeNav";
+import HomeNav from "../components/Home/HomeNav";
 
 interface CookWhatProps {
   currentPage: string;
