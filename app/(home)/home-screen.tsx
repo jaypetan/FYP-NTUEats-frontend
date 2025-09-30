@@ -33,14 +33,14 @@ export default function HomeScreen({
           className={`bg-${backgroundColor} min-h-[80vh] rounded-tl-3xl w-full`}
         />
       ) : (
-        <ScrollView
-          className={`bg-${backgroundColor} min-h-[80vh] rounded-b-3xl p-8`}
-        >
-          <HomeProfile />
-          <HomeEatWHAT />
-          <HomeCookWHAT />
-          <Text className="p-16" />
-        </ScrollView>
+        <View className={`bg-${backgroundColor} pt-8 rounded-tl-3xl`}>
+          <ScrollView className={`bg-${backgroundColor} min-h-[80vh] px-8`}>
+            <HomeProfile />
+            <HomeEatWHAT />
+            <HomeCookWHAT />
+            <Text className="py-24" />
+          </ScrollView>
+        </View>
       )}
     </View>
   );

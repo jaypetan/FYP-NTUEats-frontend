@@ -30,11 +30,11 @@ export default function CookWhat({
           className={`bg-${backgroundColor} min-h-[80vh] rounded-tl-3xl w-full`}
         />
       ) : (
-        <ScrollView
-          className={`bg-${backgroundColor} min-h-[80vh] rounded-b-3xl`}
-        >
-          <Text className="text-6xl">CookWHAT 1</Text>
-        </ScrollView>
+        <View className={`bg-${backgroundColor} pt-8 rounded-tl-3xl`}>
+          <ScrollView className={`bg-${backgroundColor} min-h-[80vh] px-8`}>
+            <Text className="text-6xl">CookWHAT 1</Text>
+          </ScrollView>
+        </View>
       )}
     </View>
   );
