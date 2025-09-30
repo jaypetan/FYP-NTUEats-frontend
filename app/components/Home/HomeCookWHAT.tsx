@@ -8,9 +8,12 @@ import Recipe2 from "@/assets/sample-data/cook/mushroomrisotto.jpeg";
 import Recipe3 from "@/assets/sample-data/cook/friednoodles.jpeg";
 import Recipe4 from "@/assets/sample-data/cook/japanesecurryrice.png";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useState } from "react";
+import Animated, { FadeOut } from "react-native-reanimated";
 
 export default function HomeEatWHAT() {
   const { setCurrentPage } = useAppContext();
+  const [swiped, setSwiped] = useState(false); // To remove instructions after swipe
 
   // TODO: Sample data to adjsut with proper algorithm next time
   const foodCards = [
@@ -40,7 +43,7 @@ export default function HomeEatWHAT() {
     },
   ];
   return (
-    <View className="mt-2">
+    <View className="mt-8">
       <View className="flex-row items-end gap-2">
         <Image
           source={CookWHATLogo}
@@ -55,6 +58,7 @@ export default function HomeEatWHAT() {
         className="w-full mt-4"
         showsHorizontalScrollIndicator={false}
         horizontal={true}
+        onScroll={() => setSwiped(true)}
       >
         {foodCards.map((card) => (
           <FoodCard
@@ -72,16 +76,21 @@ export default function HomeEatWHAT() {
           desiredPage={"cook-what"}
         />
       </ScrollView>
-      <View className="self-end mt-2 flex-row gap-2">
-        <Text className="font-inter text-blue text-sm">
-          Swipe for more options
-        </Text>
-        <MaterialCommunityIcons
-          name="gesture-swipe-right"
-          size={24}
-          color={"gray"}
-        />
-      </View>
+      {!swiped && (
+        <Animated.View
+          className="absolute -bottom-8 right-0 flex-row items-center"
+          exiting={FadeOut.duration(1000)}
+        >
+          <Text className="font-inter text-blue text-sm">
+            Swipe for more options
+          </Text>
+          <MaterialCommunityIcons
+            name="gesture-swipe-right"
+            size={24}
+            color={"gray"}
+          />
+        </Animated.View>
+      )}
     </View>
   );
 }

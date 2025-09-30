@@ -8,9 +8,12 @@ import FoodCard from "./HomeEatWHAT/FoodCard";
 import VerticalWordButton from "./SharedComponents/VerticalWordButton";
 import { useAppContext } from "../AppContext";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { useState } from "react";
+import Animated, { FadeOut } from "react-native-reanimated";
 
 export default function HomeEatWHAT() {
   const { setCurrentPage } = useAppContext();
+  const [swiped, setSwiped] = useState(false); // To remove instructions after swipe
 
   // TODO: Sample data to adjsut with proper algorithm next time
   const foodCards = [
@@ -54,6 +57,7 @@ export default function HomeEatWHAT() {
         className="w-full mt-4"
         showsHorizontalScrollIndicator={false}
         horizontal={true}
+        onScroll={() => setSwiped(true)}
       >
         {foodCards.map((card) => (
           <FoodCard
@@ -69,16 +73,21 @@ export default function HomeEatWHAT() {
           desiredPage={"eat-what"}
         />
       </ScrollView>
-      <View className="self-end mt-2 flex-row gap-2">
-        <Text className="font-inter text-blue text-sm">
-          Swipe for more options
-        </Text>
-        <MaterialCommunityIcons
-          name="gesture-swipe-right"
-          size={24}
-          color={"gray"}
-        />
-      </View>
+      {!swiped && (
+        <Animated.View
+          className="absolute -bottom-8 right-0 flex-row items-center"
+          exiting={FadeOut.duration(1000)}
+        >
+          <Text className="font-inter text-blue text-sm">
+            Swipe for more options
+          </Text>
+          <MaterialCommunityIcons
+            name="gesture-swipe-right"
+            size={24}
+            color={"gray"}
+          />
+        </Animated.View>
+      )}
     </View>
   );
 }
