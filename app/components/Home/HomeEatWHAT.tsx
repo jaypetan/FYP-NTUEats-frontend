@@ -1,13 +1,16 @@
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import EatWHATLogo from "@/assets/images/logos/EatWHAT-logo.png";
-import Review1 from "@/assets/sample-data/review-can11-malayfood-3.jpeg";
-import Review2 from "@/assets/sample-data/review-can9-jiulixiang.jpeg";
-import Review3 from "@/assets/sample-data/review-can11-sichuanmeishi.jpeg";
-import Review4 from "@/assets/sample-data/review-can11-japanese-2.jpeg";
+import Review1 from "@/assets/sample-data/eat/review-can11-malayfood-3.jpeg";
+import Review2 from "@/assets/sample-data/eat/review-can9-jiulixiang.jpeg";
+import Review3 from "@/assets/sample-data/eat/review-can11-sichuanmeishi.jpeg";
+import Review4 from "@/assets/sample-data/eat/review-can11-japanese-2.jpeg";
 import FoodCard from "./HomeEatWHAT/FoodCard";
-import VerticalWordButton from "./HomeEatWHAT/VerticalWordButton";
+import VerticalWordButton from "./SharedComponents/VerticalWordButton";
+import { useAppContext } from "../AppContext";
 
 export default function HomeEatWHAT() {
+  const { setCurrentPage } = useAppContext();
+
   // TODO: Sample data to adjsut with proper algorithm next time
   const foodCards = [
     {
@@ -48,7 +51,7 @@ export default function HomeEatWHAT() {
       </View>
       <ScrollView
         className="w-full mt-4"
-        showsHorizontalScrollIndicator={true}
+        showsHorizontalScrollIndicator={false}
         horizontal={true}
       >
         {foodCards.map((card) => (
@@ -59,7 +62,11 @@ export default function HomeEatWHAT() {
             canteenName={card.canteenName}
           />
         ))}
-        <VerticalWordButton text="More Options" />
+        <VerticalWordButton
+          text="More Options"
+          setCurrentPage={setCurrentPage}
+          desiredPage={"eat-what"}
+        />
       </ScrollView>
       <Text className="self-end mt-2 font-inter text-blue text-lg">
         Swipe for more options &gt;
