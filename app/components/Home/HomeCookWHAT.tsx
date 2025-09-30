@@ -7,6 +7,7 @@ import Recipe1 from "@/assets/sample-data/cook/carbonara.jpeg";
 import Recipe2 from "@/assets/sample-data/cook/mushroomrisotto.jpeg";
 import Recipe3 from "@/assets/sample-data/cook/friednoodles.jpeg";
 import Recipe4 from "@/assets/sample-data/cook/japanesecurryrice.png";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function HomeEatWHAT() {
   const { setCurrentPage } = useAppContext();
@@ -39,7 +40,7 @@ export default function HomeEatWHAT() {
     },
   ];
   return (
-    <View className="mt-8">
+    <View className="mt-2">
       <View className="flex-row items-end gap-2">
         <Image
           source={CookWHATLogo}
@@ -71,9 +72,16 @@ export default function HomeEatWHAT() {
           desiredPage={"cook-what"}
         />
       </ScrollView>
-      <Text className="self-end mt-2 font-inter text-blue text-lg">
-        Swipe for more options &gt;
-      </Text>
+      <View className="self-end mt-2 flex-row gap-2">
+        <Text className="font-inter text-blue text-sm">
+          Swipe for more options
+        </Text>
+        <MaterialCommunityIcons
+          name="gesture-swipe-right"
+          size={24}
+          color={"gray"}
+        />
+      </View>
     </View>
   );
 }

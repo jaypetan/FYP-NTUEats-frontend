@@ -7,6 +7,7 @@ import Review4 from "@/assets/sample-data/eat/review-can11-japanese-2.jpeg";
 import FoodCard from "./HomeEatWHAT/FoodCard";
 import VerticalWordButton from "./SharedComponents/VerticalWordButton";
 import { useAppContext } from "../AppContext";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default function HomeEatWHAT() {
   const { setCurrentPage } = useAppContext();
@@ -68,9 +69,16 @@ export default function HomeEatWHAT() {
           desiredPage={"eat-what"}
         />
       </ScrollView>
-      <Text className="self-end mt-2 font-inter text-blue text-lg">
-        Swipe for more options &gt;
-      </Text>
+      <View className="self-end mt-2 flex-row gap-2">
+        <Text className="font-inter text-blue text-sm">
+          Swipe for more options
+        </Text>
+        <MaterialCommunityIcons
+          name="gesture-swipe-right"
+          size={24}
+          color={"gray"}
+        />
+      </View>
     </View>
   );
 }
