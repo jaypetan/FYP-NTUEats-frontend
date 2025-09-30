@@ -1,21 +1,20 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import HomeNav from "../components/Home/HomeNav";
+import { useAppContext } from "../components/AppContext";
 
 interface CookWhatProps {
-  currentPage: string;
-  setCurrentPage: React.Dispatch<React.SetStateAction<string>>;
   backgroundColor: string;
   backgroundColorHex: string;
   widthClass: string;
 }
 
 export default function CookWhat({
-  currentPage,
-  setCurrentPage,
   backgroundColor,
   backgroundColorHex,
   widthClass,
 }: CookWhatProps) {
+  const { currentPage, setCurrentPage } = useAppContext();
+
   return (
     <View className="h-full w-full flex-col">
       <HomeNav

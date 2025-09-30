@@ -1,17 +1,25 @@
-import { SignedIn, SignedOut, useUser } from "@clerk/clerk-expo";
-import SignInScreen from "../(auth)/sign-in";
-import { Text, ScrollView, View } from "react-native";
-import SignOutButton from "@/app/components/SignOutButton";
+// External libraries
 import { useState, useEffect } from "react";
+import { Text, View } from "react-native";
+import Animated, {
+  SequencedTransition,
+  ReduceMotion,
+} from "react-native-reanimated";
+import { SignedIn, SignedOut, useUser } from "@clerk/clerk-expo";
+
+// Internal components
+import SignInScreen from "../(auth)/sign-in";
+import SignOutButton from "@/app/components/SignOutButton";
 import HomeScreen from "./home-screen";
 import EatWhat from "./eat-what";
 import CookWhat from "./cook-what";
-import Animated from "react-native-reanimated";
-import { SequencedTransition, ReduceMotion } from "react-native-reanimated";
+
+// Contexts or hooks
+import { useAppContext } from "../components/AppContext";
 
 export default function Page() {
   const { user } = useUser();
-  const [currentPage, setCurrentPage] = useState("home-screen");
+  const { currentPage } = useAppContext();
 
   // State to manage the order of components
   const [componentOrder, setComponentOrder] = useState([
@@ -60,8 +68,6 @@ export default function Page() {
                 .reduceMotion(ReduceMotion.Never)}
             >
               <Component
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
                 backgroundColor={index % 2 === 0 ? "darkcream" : "cream"}
                 backgroundColorHex={index % 2 === 0 ? "#FFE6A7" : "#FFEFC7"}
                 widthClass={
