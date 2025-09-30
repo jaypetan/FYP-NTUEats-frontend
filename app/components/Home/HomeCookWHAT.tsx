@@ -22,16 +22,20 @@ export default function HomeEatWHAT() {
       id: 2,
       imageSource: Recipe2,
       foodName: "Mushroom Risotto",
+      halal: true,
+      vegetarian: true,
     },
     {
       id: 3,
       imageSource: Recipe3,
       foodName: "Fried Noodles",
+      halal: true,
     },
     {
       id: 4,
       imageSource: Recipe4,
       foodName: "Japanese Curry Rice",
+      spicy: true,
     },
   ];
   return (
@@ -56,12 +60,15 @@ export default function HomeEatWHAT() {
             key={card.id}
             imageSource={card.imageSource}
             foodName={card.foodName}
+            halal={card.halal}
+            vegetarian={card.vegetarian}
+            spicy={card.spicy}
           />
         ))}
         <VerticalWordButton
           text="More Options"
           setCurrentPage={setCurrentPage}
-          desiredPage={"eat-what"}
+          desiredPage={"cook-what"}
         />
       </ScrollView>
       <Text className="self-end mt-2 font-inter text-blue text-lg">
