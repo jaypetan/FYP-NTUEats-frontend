@@ -1,21 +1,21 @@
 import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
-import HomeNav from "../components/Home/HomeNav";
-import HomeProfile from "../components/Home/HomeProfile";
-import HomeEatWHAT from "../components/Home/HomeEatWHAT";
-import HomeCookWHAT from "../components/Home/HomeCookWHAT";
-import { useAppContext } from "../components/AppContext";
+import HomeNav from "../Home/HomeNav";
+import HomeProfile from "../Home/HomeProfile";
+import HomeEatWHAT from "../Home/HomeEatWHAT";
+import HomeCookWHAT from "../Home/HomeCookWHAT";
+import { useAppContext } from "../AppContext";
 
-interface HomeScreenProps {
+interface HomePageProps {
   backgroundColor: string;
   backgroundColorHex: string;
   widthClass: string;
 }
 
-export default function HomeScreen({
+export default function HomePage({
   backgroundColor,
   backgroundColorHex,
   widthClass,
-}: HomeScreenProps) {
+}: HomePageProps) {
   const { currentPage, setCurrentPage } = useAppContext();
 
   return (
@@ -25,10 +25,10 @@ export default function HomeScreen({
         backgroundColorHex={backgroundColorHex}
         text="Home"
         setCurrentPage={setCurrentPage}
-        desiredPage="home-screen"
+        desiredPage="home-page"
         widthClass={widthClass}
       />
-      {currentPage !== "home-screen" ? (
+      {currentPage !== "home-page" ? (
         <View
           className={`bg-${backgroundColor} min-h-[80vh] rounded-tl-3xl w-full`}
         />

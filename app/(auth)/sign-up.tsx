@@ -76,6 +76,7 @@ export default function SignUpScreen() {
     }
   };
 
+  // To get out of verfication page
   const cancelVerification = () => {
     Alert.alert("Canceling verification", "Are you sure?", [
       {
@@ -92,6 +93,7 @@ export default function SignUpScreen() {
     ]);
   };
 
+  // Verification Page
   if (pendingVerification) {
     return (
       <View className="flex-col gap-4 items-center justify-center px-8 h-full bg-cream text-blue">
@@ -123,6 +125,7 @@ export default function SignUpScreen() {
     );
   }
 
+  // Sign Up Page
   return (
     <View className="flex-col items-center justify-center px-8 h-full bg-cream text-blue">
       <Text className="text-blue text-3xl text-left w-80 font-semibold">

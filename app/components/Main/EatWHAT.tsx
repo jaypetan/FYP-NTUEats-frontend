@@ -1,14 +1,12 @@
 import { View, Text, ScrollView, Image, TextInput } from "react-native";
-import HomeNav from "../components/Home/HomeNav";
-import { useAppContext } from "../components/AppContext";
-import EatWHATLogo from "@/assets/images/logos/EatWHAT-logo.png";
-import SearchBar from "../components/EatWHAT/SearchBar";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import HomeNav from "../Home/HomeNav";
+import { useAppContext } from "../AppContext";
+import SearchBar from "../EatWHAT/SearchBar";
 import Stall1 from "@/assets/sample-data/eat/stall-can11-sichuanmeishi.jpeg";
 import Stall2 from "@/assets/sample-data/eat/stall-can9-jiuluxiang.jpeg";
 import Stall3 from "@/assets/sample-data/eat/stall-can11-malayfood.jpeg";
 import Stall4 from "@/assets/sample-data/eat/stall-can9-localspecialties.jpeg";
-import StallCard from "../components/EatWHAT/StallCard";
+import StallCard from "../EatWHAT/StallCard";
 
 interface EatWhatProps {
   backgroundColor: string;

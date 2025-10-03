@@ -18,7 +18,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 // Create Provider Componenet
 const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   // States to manage the current page
-  const [currentPage, setCurrentPage] = useState("home-screen");
+  const [currentPage, setCurrentPage] = useState("home-page");
 
   return (
     <AppContext.Provider value={{ currentPage, setCurrentPage }}>
