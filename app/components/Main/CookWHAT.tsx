@@ -1,6 +1,6 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import HomeNav from "../Home/HomeNav";
+import { ScrollView, Text, View } from "react-native";
 import { useAppContext } from "../AppContext";
+import HomeNav from "../Home/HomeNav";
 
 interface CookWhatProps {
   backgroundColor: string;

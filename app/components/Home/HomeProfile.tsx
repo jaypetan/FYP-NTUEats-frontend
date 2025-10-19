@@ -1,8 +1,8 @@
-import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useUser } from "@clerk/clerk-expo";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
-export default function HomeProfile() {
+const HomeProfile = () => {
   const { user } = useUser();
 
   return (
@@ -48,4 +48,6 @@ export default function HomeProfile() {
       </View>
     </View>
   );
-}
+};
+
+export default HomeProfile;

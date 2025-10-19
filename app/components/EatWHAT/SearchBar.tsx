@@ -1,7 +1,7 @@
-import { View, Text, TextInput } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Text, TextInput, View } from "react-native";
 
-export default function SearchBar() {
+const SearchBar = () => {
   return (
     <View className="flex-col gap-2">
       <View className="flex-row justify-between items-center w-full">
@@ -26,4 +26,6 @@ export default function SearchBar() {
       </View>
     </View>
   );
-}
+};
+
+export default SearchBar;

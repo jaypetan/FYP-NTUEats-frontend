@@ -1,17 +1,17 @@
-import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import CookWHATLogo from "@/assets/images/logos/CookWHAT-logo.png";
-import FoodCard from "./HomeCookWHAT/FoodCard";
-import VerticalWordButton from "./SharedComponents/VerticalWordButton";
-import { useAppContext } from "../AppContext";
 import Recipe1 from "@/assets/sample-data/cook/carbonara.jpeg";
-import Recipe2 from "@/assets/sample-data/cook/mushroomrisotto.jpeg";
 import Recipe3 from "@/assets/sample-data/cook/friednoodles.jpeg";
 import Recipe4 from "@/assets/sample-data/cook/japanesecurryrice.png";
+import Recipe2 from "@/assets/sample-data/cook/mushroomrisotto.jpeg";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
+import { Image, ScrollView, Text, View } from "react-native";
 import Animated, { FadeOut } from "react-native-reanimated";
+import { useAppContext } from "../AppContext";
+import FoodCard from "./HomeCookWHAT/FoodCard";
+import VerticalWordButton from "./SharedComponents/VerticalWordButton";
 
-export default function HomeEatWHAT() {
+const HomeEatWHAT = () => {
   const { setCurrentPage } = useAppContext();
   const [swiped, setSwiped] = useState(false); // To remove instructions after swipe
 
@@ -93,4 +93,6 @@ export default function HomeEatWHAT() {
       )}
     </View>
   );
-}
+};
+
+export default HomeEatWHAT;

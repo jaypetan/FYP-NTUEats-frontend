@@ -1,17 +1,17 @@
-import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import EatWHATLogo from "@/assets/images/logos/EatWHAT-logo.png";
-import Review1 from "@/assets/sample-data/eat/review-can11-malayfood-3.jpeg";
-import Review2 from "@/assets/sample-data/eat/review-can9-jiulixiang.jpeg";
-import Review3 from "@/assets/sample-data/eat/review-can11-sichuanmeishi.jpeg";
 import Review4 from "@/assets/sample-data/eat/review-can11-japanese-2.jpeg";
+import Review1 from "@/assets/sample-data/eat/review-can11-malayfood-3.jpeg";
+import Review3 from "@/assets/sample-data/eat/review-can11-sichuanmeishi.jpeg";
+import Review2 from "@/assets/sample-data/eat/review-can9-jiulixiang.jpeg";
+import { useState } from "react";
+import { Image, ScrollView, Text, View } from "react-native";
+import Animated, { FadeOut } from "react-native-reanimated";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { useAppContext } from "../AppContext";
 import FoodCard from "./HomeEatWHAT/FoodCard";
 import VerticalWordButton from "./SharedComponents/VerticalWordButton";
-import { useAppContext } from "../AppContext";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { useState } from "react";
-import Animated, { FadeOut } from "react-native-reanimated";
 
-export default function HomeEatWHAT() {
+const HomeEatWHAT = () => {
   const { setCurrentPage } = useAppContext();
   const [swiped, setSwiped] = useState(false); // To remove instructions after swipe
 
@@ -90,4 +90,6 @@ export default function HomeEatWHAT() {
       )}
     </View>
   );
-}
+};
+
+export default HomeEatWHAT;

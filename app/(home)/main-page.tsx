@@ -1,18 +1,18 @@
 // External Libraries
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import Animated, {
-  SequencedTransition,
   ReduceMotion,
+  SequencedTransition,
 } from "react-native-reanimated";
 
 // App Context
 import { useAppContext } from "../components/AppContext";
 
 // Components
-import HomePage from "@/app/components/Main/HomePage";
-import EatWhat from "@/app/components/Main/EatWHAT";
 import CookWhat from "@/app/components/Main/CookWHAT";
+import EatWhat from "@/app/components/Main/EatWHAT";
+import HomePage from "@/app/components/Main/HomePage";
 
 export default function MainPage() {
   const { currentPage } = useAppContext();

@@ -1,7 +1,7 @@
 // External libraries
-import { useState, useEffect } from "react";
-import { View } from "react-native";
 import { SignedIn, SignedOut, useUser } from "@clerk/clerk-expo";
+import { useEffect, useState } from "react";
+import { View } from "react-native";
 
 // App Context
 import { useAppContext } from "../components/AppContext";
@@ -13,19 +13,22 @@ import StallPage from "./stall-page";
 
 // Navigation Component
 import NavButton from "@/app/components/NavButton";
-import NavPage from "./nav-page";
 import { useRef } from "react";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import ReanimatedDrawerLayout, {
-  DrawerType,
-  DrawerPosition,
   DrawerLayoutMethods,
+  DrawerPosition,
+  DrawerType,
 } from "react-native-gesture-handler/ReanimatedDrawerLayout";
+import NavPage from "./nav-page";
+
+import Animated, { SlideInDown, SlideOutRight } from "react-native-reanimated";
 
 export default function Page() {
   const { user } = useUser();
   const { currentPage } = useAppContext();
   const [content, setContent] = useState(<MainPage />);
+  const [page, setPage] = useState(1);
 
   const drawerRef = useRef<DrawerLayoutMethods>(null);
   const tapGesture = Gesture.Tap()
@@ -40,13 +43,16 @@ export default function Page() {
     switch (currentPage) {
       case "stall-page":
         setContent(<StallPage />);
+        setPage(2);
         break;
       case "home-page":
         setContent(<MainPage />);
+        setPage(1);
         break;
       default:
         // home-page, eat-what, and cook-what will set to default
         setContent(<MainPage />);
+        setPage(1);
     }
   }, [currentPage]);
 
@@ -66,7 +72,13 @@ export default function Page() {
             <GestureDetector gesture={tapGesture}>
               <NavButton />
             </GestureDetector>
-            {content}
+            <Animated.View
+              key={page}
+              entering={SlideInDown.duration(500)}
+              exiting={SlideOutRight.duration(500)}
+            >
+              {content}
+            </Animated.View>
           </ReanimatedDrawerLayout>
         </View>
       </SignedIn>
