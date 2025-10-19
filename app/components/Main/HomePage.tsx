@@ -4,6 +4,7 @@ import HomeProfile from "../Home/HomeProfile";
 import HomeEatWHAT from "../Home/HomeEatWHAT";
 import HomeCookWHAT from "../Home/HomeCookWHAT";
 import { useAppContext } from "../AppContext";
+import OptimizedScrollView from "@/app/components/OptimizedScrollView";
 
 interface HomePageProps {
   backgroundColor: string;
@@ -34,12 +35,14 @@ export default function HomePage({
         />
       ) : (
         <View className={`bg-${backgroundColor} pt-8 rounded-tl-3xl`}>
-          <ScrollView className={`bg-${backgroundColor} min-h-[80vh] px-8`}>
+          <OptimizedScrollView
+            className={`bg-${backgroundColor} min-h-[80vh] px-8`}
+          >
             <HomeProfile />
             <HomeEatWHAT />
             <HomeCookWHAT />
             <Text className="py-24" />
-          </ScrollView>
+          </OptimizedScrollView>
         </View>
       )}
     </View>

@@ -7,6 +7,7 @@ import Stall2 from "@/assets/sample-data/eat/stall-can9-jiuluxiang.jpeg";
 import Stall3 from "@/assets/sample-data/eat/stall-can11-malayfood.jpeg";
 import Stall4 from "@/assets/sample-data/eat/stall-can9-localspecialties.jpeg";
 import StallCard from "../EatWHAT/StallCard";
+import OptimizedScrollView from "@/app/components/OptimizedScrollView";
 
 interface EatWhatProps {
   backgroundColor: string;
@@ -71,7 +72,9 @@ export default function EatWhat({
         />
       ) : (
         <View className={`bg-${backgroundColor} pt-8 rounded-tl-3xl`}>
-          <ScrollView className={`bg-${backgroundColor} min-h-[80vh] px-8`}>
+          <OptimizedScrollView
+            className={`bg-${backgroundColor} min-h-[80vh] px-8`}
+          >
             <Text className="text-4xl font-koulen pt-8 text-blue">
               What are we eating today?
             </Text>
@@ -87,7 +90,7 @@ export default function EatWhat({
               />
             ))}
             <Text className="py-24" />
-          </ScrollView>
+          </OptimizedScrollView>
         </View>
       )}
     </View>
