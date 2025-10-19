@@ -1,7 +1,10 @@
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useUser } from "@clerk/clerk-expo";
 
 export default function HomeProfile() {
+  const { user } = useUser();
+
   return (
     <View className="flex-row h-64 rounded-2xl p-4 bg-green/50">
       <View className="flex-col pb-2 p-4 h-full w-full justify-between">
@@ -9,7 +12,7 @@ export default function HomeProfile() {
           className="font-koulen font-bold text-blue text-3xl leading-10"
           style={{ includeFontPadding: false }}
         >
-          Hello, Jun Peng!
+          Hello, {user?.username}!
         </Text>
         <Text className="font-inter text-blue text-lg">Recent Updates:</Text>
         <ScrollView className="rounded-xl p-2  border-b-2 border-blue">

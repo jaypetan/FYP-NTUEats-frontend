@@ -32,6 +32,7 @@ export default function SignUpScreen() {
     try {
       await signUp.create({
         emailAddress: formData.emailAddress,
+        username: formData.username,
         password: formData.password,
       });
 
@@ -151,12 +152,15 @@ export default function SignUpScreen() {
           onChangeText={(text) =>
             setFormData({ ...formData, emailAddress: text })
           }
+          keyboardType="email-address"
+          autoCapitalize="none"
         />
         <InputField
           label="Password"
           value={formData.password}
           placeholder="password"
           secureTextEntry={true}
+          autoComplete="password-new"
           onChangeText={(text) => setFormData({ ...formData, password: text })}
         />
         <InputField
@@ -164,6 +168,7 @@ export default function SignUpScreen() {
           value={formData.confirmPassword}
           placeholder="confirmed password"
           secureTextEntry={true}
+          autoComplete="password-new"
           onChangeText={(text) =>
             setFormData({ ...formData, confirmPassword: text })
           }
