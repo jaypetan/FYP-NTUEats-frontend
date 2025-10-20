@@ -1,15 +1,17 @@
 import React, {
-  createContext,
   Dispatch,
-  useState,
   ReactNode,
+  createContext,
   useContext,
+  useEffect,
+  useState,
 } from "react";
 
 // Define the Context Type
 interface AppContextType {
   currentPage: string;
   setCurrentPage: Dispatch<React.SetStateAction<string>>;
+  returnToPreviousPage: () => void;
 }
 
 // Create Context Object
@@ -19,9 +21,20 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   // States to manage the current page
   const [currentPage, setCurrentPage] = useState("home-page");
+  const [prevPage, setPrevPage] = useState({ prev: "", next: "home-page" });
+
+  useEffect(() => {
+    setPrevPage((prev) => ({ prev: prev.next, next: currentPage }));
+  }, [currentPage]);
+
+  const returnToPreviousPage = () => {
+    setCurrentPage(prevPage.prev);
+  };
 
   return (
-    <AppContext.Provider value={{ currentPage, setCurrentPage }}>
+    <AppContext.Provider
+      value={{ currentPage, setCurrentPage, returnToPreviousPage }}
+    >
       {children}
     </AppContext.Provider>
   );

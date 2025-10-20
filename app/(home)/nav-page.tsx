@@ -1,7 +1,7 @@
 import { useAppContext } from "@/app/components/AppContext";
 import SignOutButton from "@/app/components/SignOutButton";
 import { Text, TouchableOpacity, View } from "react-native";
-import NavImage from "../components/NavImage";
+import NavImage from "../components/Nav/NavImage";
 
 interface NavPageProps {
   closeDrawer: () => void;

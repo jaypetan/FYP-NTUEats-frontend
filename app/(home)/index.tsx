@@ -1,7 +1,7 @@
 // External libraries
 import { SignedIn, SignedOut } from "@clerk/clerk-expo";
 import { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 // App Context
 import { useAppContext } from "../components/AppContext";
@@ -21,8 +21,8 @@ import ReanimatedDrawerLayout, {
 } from "react-native-gesture-handler/ReanimatedDrawerLayout";
 import NavPage from "./nav-page";
 
-import { MaterialIcons } from "@expo/vector-icons";
 import Animated, { FadeOutRight, SlideInDown } from "react-native-reanimated";
+import NavButton from "../components/Nav/NavButotn";
 import RecipePage from "./recipe-page";
 
 export default function Page() {
@@ -72,19 +72,7 @@ export default function Page() {
             drawerWidth={300}
           >
             <GestureDetector gesture={tapGesture}>
-              <View
-                className="ml-2 flex-row items-center self-start"
-                collapsable={false}
-              >
-                <MaterialIcons
-                  name="keyboard-arrow-left"
-                  size={32}
-                  color="#323232"
-                />
-                <Text className="font-ranchers font-bold text-blue text-3xl">
-                  Nav
-                </Text>
-              </View>
+              <NavButton />
             </GestureDetector>
             <Animated.View
               key={page}
