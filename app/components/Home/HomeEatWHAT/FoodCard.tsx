@@ -1,18 +1,12 @@
 import React from "react";
-import {
-  View,
-  Text,
-  Image,
-  TouchableHighlight,
-  TouchableOpacity,
-} from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
+import { useAppContext } from "../../AppContext";
 
 interface FoodCardProps {
   imageSource: any;
   foodName: string;
   canteenName: string;
 }
-import { useAppContext } from "../../AppContext";
 
 const FoodCard: React.FC<FoodCardProps> = ({
   imageSource,
@@ -22,8 +16,8 @@ const FoodCard: React.FC<FoodCardProps> = ({
   const { setCurrentPage } = useAppContext();
 
   return (
-    <TouchableHighlight onPress={() => setCurrentPage("stall-page")}>
-      <View className="mr-4 relative w-44 h-64 rounded-2xl overflow-hidden bg-green/50">
+    <View className="mr-4 relative w-44 h-64 rounded-2xl overflow-hidden bg-green/50">
+      <TouchableOpacity onPress={() => setCurrentPage("stall-page")}>
         <Image
           source={imageSource}
           className="w-full h-full rounded-2xl p-2"
@@ -37,8 +31,8 @@ const FoodCard: React.FC<FoodCardProps> = ({
             @ {canteenName}
           </Text>
         </View>
-      </View>
-    </TouchableHighlight>
+      </TouchableOpacity>
+    </View>
   );
 };
 

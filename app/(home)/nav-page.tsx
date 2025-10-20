@@ -1,7 +1,7 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import SignOutButton from "@/app/components/SignOutButton";
 import { useAppContext } from "@/app/components/AppContext";
-import ReanimatedDrawerLayout from "react-native-gesture-handler/ReanimatedDrawerLayout";
+import SignOutButton from "@/app/components/SignOutButton";
+import { Text, TouchableOpacity, View } from "react-native";
+import NavImage from "../components/NavImage";
 
 interface NavPageProps {
   closeDrawer: () => void;
@@ -26,7 +26,8 @@ export default function NavPage({ closeDrawer }: NavPageProps) {
   };
 
   return (
-    <View className="h-full w-full flex-col px-8 gap-4 pt-24">
+    <View className="h-full w-full flex-col px-8 gap-2 pt-24">
+      <NavImage />
       <Text className="font-ranchers text-2xl text-blue mb-4">
         What are you looking for?
       </Text>

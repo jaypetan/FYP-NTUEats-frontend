@@ -1,7 +1,7 @@
 // External libraries
-import { SignedIn, SignedOut, useUser } from "@clerk/clerk-expo";
+import { SignedIn, SignedOut } from "@clerk/clerk-expo";
 import { useEffect, useState } from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 
 // App Context
 import { useAppContext } from "../components/AppContext";
@@ -12,7 +12,6 @@ import MainPage from "./main-page";
 import StallPage from "./stall-page";
 
 // Navigation Component
-import NavButton from "@/app/components/NavButton";
 import { useRef } from "react";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import ReanimatedDrawerLayout, {
@@ -22,10 +21,11 @@ import ReanimatedDrawerLayout, {
 } from "react-native-gesture-handler/ReanimatedDrawerLayout";
 import NavPage from "./nav-page";
 
-import Animated, { SlideInDown, SlideOutRight } from "react-native-reanimated";
+import { MaterialIcons } from "@expo/vector-icons";
+import Animated, { FadeOutRight, SlideInDown } from "react-native-reanimated";
+import RecipePage from "./recipe-page";
 
 export default function Page() {
-  const { user } = useUser();
   const { currentPage } = useAppContext();
   const [content, setContent] = useState(<MainPage />);
   const [page, setPage] = useState(1);
@@ -33,21 +33,23 @@ export default function Page() {
   const drawerRef = useRef<DrawerLayoutMethods>(null);
   const tapGesture = Gesture.Tap()
     .runOnJS(true)
-    .onStart(() => {
-      drawerRef.current?.openDrawer();
-    });
+    .onStart(() => drawerRef.current?.openDrawer());
 
   const closeDrawer = () => drawerRef.current?.closeDrawer();
 
   useEffect(() => {
     switch (currentPage) {
+      case "home-page":
+        setContent(<MainPage />);
+        setPage(1);
+        break;
       case "stall-page":
         setContent(<StallPage />);
         setPage(2);
         break;
-      case "home-page":
-        setContent(<MainPage />);
-        setPage(1);
+      case "recipe-page":
+        setContent(<RecipePage />);
+        setPage(2);
         break;
       default:
         // home-page, eat-what, and cook-what will set to default
@@ -60,7 +62,7 @@ export default function Page() {
     <View>
       {/* if signed in */}
       <SignedIn>
-        <View className="bg-red h-screen realtive pt-8">
+        <View className="bg-red h-screen realtive pt-4">
           <ReanimatedDrawerLayout
             ref={drawerRef}
             renderNavigationView={() => <NavPage closeDrawer={closeDrawer} />}
@@ -70,12 +72,24 @@ export default function Page() {
             drawerWidth={300}
           >
             <GestureDetector gesture={tapGesture}>
-              <NavButton />
+              <View
+                className="ml-2 flex-row items-center self-start"
+                collapsable={false}
+              >
+                <MaterialIcons
+                  name="keyboard-arrow-left"
+                  size={32}
+                  color="#323232"
+                />
+                <Text className="font-ranchers font-bold text-blue text-3xl">
+                  Nav
+                </Text>
+              </View>
             </GestureDetector>
             <Animated.View
               key={page}
-              entering={SlideInDown.duration(500)}
-              exiting={SlideOutRight.duration(500)}
+              entering={SlideInDown.duration(800)}
+              exiting={FadeOutRight.duration(800)}
             >
               {content}
             </Animated.View>

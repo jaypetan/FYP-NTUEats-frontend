@@ -9,6 +9,7 @@ const StallReview = () => {
   const reviews = [
     {
       reviewImage: review1,
+      reviewDate: "1/1/2025",
       reviewTitle: "The best food in the world",
       reviewDescription:
         "The food was delicious and full of flavor, with fresh ingredients and perfect seasoning. The service was friendly and the cozy atmosphere made the experience even better.",
@@ -17,6 +18,7 @@ const StallReview = () => {
     },
     {
       reviewImage: review2,
+      reviewDate: "1/1/2025",
       reviewTitle: "Good Food",
       reviewDescription: "Yum Yum in the Tum",
       reviewName: "Ting",
@@ -24,6 +26,7 @@ const StallReview = () => {
     },
     {
       reviewTitle: "Highly Recommended",
+      reviewDate: "1/1/2025",
       reviewDescription:
         "The food was delicious and full of flavor, with fresh ingredients and perfect seasoning. The service was friendly and the cozy atmosphere made the experience even better.”",
       reviewName: "Joe",
@@ -31,6 +34,15 @@ const StallReview = () => {
     },
     {
       reviewTitle: "Test Comment",
+      reviewDate: "1/1/2025",
+      reviewDescription: "Yum Yum in the Tum",
+      reviewName: "Joe",
+      reviewLikes: 30,
+    },
+    {
+      reviewImage: review2,
+      reviewTitle: "Test Comment",
+      reviewDate: "1/1/2025",
       reviewDescription: "Yum Yum in the Tum",
       reviewName: "Joe",
       reviewLikes: 30,
@@ -46,6 +58,7 @@ const StallReview = () => {
           <StallReviewCard
             key={index}
             reviewImage={review.reviewImage}
+            reviewDate={review.reviewDate}
             reviewTitle={review.reviewTitle}
             reviewDescription={review.reviewDescription}
             reviewName={review.reviewName}

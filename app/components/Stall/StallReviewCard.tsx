@@ -1,20 +1,24 @@
 import { FontAwesome } from "@expo/vector-icons";
+import { useState } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
 interface StallReviewCardProps {
+  reviewName: string;
+  reviewDate: string;
   reviewImage?: any;
   reviewTitle: string;
   reviewDescription: string;
-  reviewName: string;
   reviewLikes: number;
 }
 const StallReviewCard = ({
+  reviewName,
+  reviewDate,
   reviewImage,
   reviewTitle,
   reviewDescription,
-  reviewName,
   reviewLikes,
 }: StallReviewCardProps) => {
+  const [like, setLike] = useState(false);
   return (
     <View
       className={`bg-green/50 rounded-xl p-4 flex-row gap-4
@@ -33,7 +37,16 @@ const StallReviewCard = ({
         } justify-between gap-4`}
       >
         <View>
-          <Text className="text-blue font-inter font-bold text-lg">
+          <View className="flex-row justify-between">
+            <View className="flex-row gap-2 items-baseline">
+              <FontAwesome name="user" size={16} color="#323232" />
+              <Text className="font-inter text-lg font-semibold text-blue">
+                {reviewName}
+              </Text>
+            </View>
+            <Text className="font-inter text-lg text-blue">{reviewDate}</Text>
+          </View>
+          <Text className="text-blue font-inter font-bold text-lg mt-2">
             {reviewTitle}
           </Text>
           <Text
@@ -43,18 +56,17 @@ const StallReviewCard = ({
             "{reviewDescription}""
           </Text>
         </View>
-        <View className="flex-row justify-between items-center">
+        <View className="flex-row gap-2 items-center justify-end">
           <Text className="font-inter text-lg font-semibold text-blue">
-            {reviewName}
+            {reviewLikes}
           </Text>
-          <View className="flex-row gap-2 items-center">
-            <Text className="font-inter text-lg font-semibold text-blue">
-              {reviewLikes}
-            </Text>
-            <TouchableOpacity>
+          <TouchableOpacity onPress={() => setLike(!like)}>
+            {like ? (
+              <FontAwesome name="heart" size={20} color="red" />
+            ) : (
               <FontAwesome name="heart-o" size={20} color="black" />
-            </TouchableOpacity>
-          </View>
+            )}
+          </TouchableOpacity>
         </View>
       </View>
     </View>
