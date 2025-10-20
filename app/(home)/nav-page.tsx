@@ -29,7 +29,7 @@ export default function NavPage({ closeDrawer }: NavPageProps) {
     <View className="h-full w-full flex-col px-8 gap-2 pt-24">
       <NavImage />
       <Text className="font-ranchers text-2xl text-blue mb-4">
-        What are you looking for?
+        Looking for What?
       </Text>
 
       {NavButton("home-page", "Home")}
