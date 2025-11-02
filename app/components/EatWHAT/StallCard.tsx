@@ -1,13 +1,14 @@
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { useAppContext } from "../AppContext";
+import TouchableScale from "@/app/components/TouchableScale";
 
 interface StallCardProps {
-  imageSource: any; // Image source (e.g., require or URI)
-  title: string; // Title of the food stall
-  location: string; // Location (e.g., CAN 11)
-  description: string; // Food description
-  priceSymbol: string; // Price symbol (e.g., "$")
+  imageSource: any;
+  title: string;
+  location: string;
+  description: string;
+  priceSymbol: string;
 }
 
 const StallCard: React.FC<StallCardProps> = ({
@@ -20,7 +21,7 @@ const StallCard: React.FC<StallCardProps> = ({
   const { setCurrentPage } = useAppContext();
   return (
     <View className="mt-8">
-      <TouchableOpacity onPress={() => setCurrentPage("stall-page")}>
+      <TouchableScale onPress={() => setCurrentPage("stall-page")}>
         <Image
           source={imageSource}
           resizeMode="cover"
@@ -44,7 +45,7 @@ const StallCard: React.FC<StallCardProps> = ({
             </Text>
           </View>
         </View>
-      </TouchableOpacity>
+      </TouchableScale>
     </View>
   );
 };

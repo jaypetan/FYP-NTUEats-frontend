@@ -22,7 +22,7 @@ import ReanimatedDrawerLayout, {
 import NavPage from "./nav-page";
 
 import Animated, { FadeOutRight, SlideInDown } from "react-native-reanimated";
-import NavButton from "../components/Nav/NavButotn";
+import NavButton from "../components/Nav/NavButton";
 import RecipePage from "./recipe-page";
 
 export default function Page() {

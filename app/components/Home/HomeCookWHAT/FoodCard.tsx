@@ -3,6 +3,7 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { useAppContext } from "../../AppContext";
+import TouchableScale from "@/app/components/TouchableScale";
 
 interface FoodCardProps {
   imageSource: any;
@@ -23,7 +24,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
 
   return (
     <View className="mr-4 relative w-44 h-64 rounded-2xl bg-green/50">
-      <TouchableOpacity onPress={() => setCurrentPage("recipe-page")}>
+      <TouchableScale onPress={() => setCurrentPage("recipe-page")}>
         <Image
           source={imageSource}
           className="w-full h-full rounded-2xl p-2"
@@ -60,7 +61,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
             {foodName}
           </Text>
         </View>
-      </TouchableOpacity>
+      </TouchableScale>
     </View>
   );
 };

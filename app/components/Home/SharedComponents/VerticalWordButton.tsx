@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { Text } from "react-native";
+import TouchableScale from "@/app/components/TouchableScale";
 
 interface VerticalWordButtonProps {
   text: string;
@@ -12,7 +13,7 @@ const VerticalWordButton: React.FC<VerticalWordButtonProps> = ({
   desiredPage,
 }) => {
   return (
-    <TouchableOpacity
+    <TouchableScale
       onPress={() => setCurrentPage(desiredPage)}
       className="bg-green/50 px-4 py-2 rounded-2xl flex-col justify-center"
     >
@@ -24,7 +25,7 @@ const VerticalWordButton: React.FC<VerticalWordButtonProps> = ({
           {char.toUpperCase()}
         </Text>
       ))}
-    </TouchableOpacity>
+    </TouchableScale>
   );
 };
 

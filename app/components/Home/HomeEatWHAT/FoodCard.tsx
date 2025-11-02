@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { useAppContext } from "../../AppContext";
+import TouchableScale from "@/app/components/TouchableScale";
 
 interface FoodCardProps {
   imageSource: any;
@@ -17,7 +18,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
 
   return (
     <View className="mr-4 relative w-44 h-64 rounded-2xl overflow-hidden bg-green/50">
-      <TouchableOpacity onPress={() => setCurrentPage("stall-page")}>
+      <TouchableScale onPress={() => setCurrentPage("stall-page")}>
         <Image
           source={imageSource}
           className="w-full h-full rounded-2xl p-2"
@@ -31,7 +32,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
             @ {canteenName}
           </Text>
         </View>
-      </TouchableOpacity>
+      </TouchableScale>
     </View>
   );
 };
