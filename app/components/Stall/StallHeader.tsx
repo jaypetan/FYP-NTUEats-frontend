@@ -1,5 +1,6 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { Image, Text, View } from "react-native";
+import ClosePage from "../ClosePage";
 
 interface StallHeaderProps {
   stallImage: any;
@@ -13,6 +14,7 @@ const StallHeader: React.FC<StallHeaderProps> = ({
 }) => {
   return (
     <View>
+      <ClosePage right={"right-6"} />
       <View className="w-full h-64 bg-cream flex justify-center items-center px-8 pt-8 rounded-t-full">
         <Image
           source={stallImage}
