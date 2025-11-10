@@ -1,16 +1,27 @@
 import React from "react";
-import { Text } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { Text, View } from "react-native";
+import RecipeCommentCard from "./RecipeCommentCard";
 
 interface RecipeCommentsProps {
-  comments: string;
+  comments: object[];
 }
 
 const RecipeComments: React.FC<RecipeCommentsProps> = ({ comments }) => {
   return (
-    <ScrollView className="px-8 mt-4 mb-24 h-[60vh] w-full bg-cream">
-      <Text className="text-lg text-black">comments</Text>
-    </ScrollView>
+    <>
+      <Text className="text-3xl pt-2 font-koulen text-blue mt-4 border-b border-blue mb-4">
+        Comments:
+      </Text>
+      <View className="px-2">
+        {comments.length === 0 ? (
+          <Text className="text-xl text-blue">No comments yet.</Text>
+        ) : (
+          comments.map((comment: any, index: number) => (
+            <RecipeCommentCard key={index} comment={comment} />
+          ))
+        )}
+      </View>
+    </>
   );
 };
 

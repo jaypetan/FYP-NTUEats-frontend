@@ -1,6 +1,5 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
 import { useAppContext } from "../AppContext";
 
@@ -12,7 +11,7 @@ interface RecipeAboutProps {
 const RecipeAbout: React.FC<RecipeAboutProps> = ({ desc, ingredients }) => {
   const { returnToPreviousPage } = useAppContext();
   return (
-    <ScrollView className="px-8 py-4 mb-24 min-h-[60vh] w-full bg-darkcream rounded-tr-2xl">
+    <>
       <View className="flex-row items-center gap-2">
         <FontAwesome name="file-alt" size={24} color="#323232" />
         <Text className="text-3xl pt-2 font-koulen text-blue mt-4">
@@ -31,7 +30,7 @@ const RecipeAbout: React.FC<RecipeAboutProps> = ({ desc, ingredients }) => {
           - {ingredient}
         </Text>
       ))}
-    </ScrollView>
+    </>
   );
 };
 
